@@ -23,6 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AccountServiceClient interface {
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
+	LoginGoogle(ctx context.Context, in *LoginGoogleRequest, opts ...grpc.CallOption) (*LoginGoogleResponse, error)
 	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
 	AccountInformation(ctx context.Context, in *AccountInformationRequest, opts ...grpc.CallOption) (*AccountInformationResponse, error)
 }
@@ -38,6 +39,15 @@ func NewAccountServiceClient(cc grpc.ClientConnInterface) AccountServiceClient {
 func (c *accountServiceClient) Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
 	out := new(LoginResponse)
 	err := c.cc.Invoke(ctx, "/web.account.v1.AccountService/Login", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountServiceClient) LoginGoogle(ctx context.Context, in *LoginGoogleRequest, opts ...grpc.CallOption) (*LoginGoogleResponse, error) {
+	out := new(LoginGoogleResponse)
+	err := c.cc.Invoke(ctx, "/web.account.v1.AccountService/LoginGoogle", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -67,6 +77,7 @@ func (c *accountServiceClient) AccountInformation(ctx context.Context, in *Accou
 // for forward compatibility
 type AccountServiceServer interface {
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
+	LoginGoogle(context.Context, *LoginGoogleRequest) (*LoginGoogleResponse, error)
 	Register(context.Context, *RegisterRequest) (*RegisterResponse, error)
 	AccountInformation(context.Context, *AccountInformationRequest) (*AccountInformationResponse, error)
 	mustEmbedUnimplementedAccountServiceServer()
@@ -78,6 +89,9 @@ type UnimplementedAccountServiceServer struct {
 
 func (UnimplementedAccountServiceServer) Login(context.Context, *LoginRequest) (*LoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
+}
+func (UnimplementedAccountServiceServer) LoginGoogle(context.Context, *LoginGoogleRequest) (*LoginGoogleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LoginGoogle not implemented")
 }
 func (UnimplementedAccountServiceServer) Register(context.Context, *RegisterRequest) (*RegisterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Register not implemented")
@@ -112,6 +126,24 @@ func _AccountService_Login_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AccountServiceServer).Login(ctx, req.(*LoginRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AccountService_LoginGoogle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LoginGoogleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountServiceServer).LoginGoogle(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/web.account.v1.AccountService/LoginGoogle",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountServiceServer).LoginGoogle(ctx, req.(*LoginGoogleRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -162,6 +194,10 @@ var AccountService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Login",
 			Handler:    _AccountService_Login_Handler,
+		},
+		{
+			MethodName: "LoginGoogle",
+			Handler:    _AccountService_LoginGoogle_Handler,
 		},
 		{
 			MethodName: "Register",

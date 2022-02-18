@@ -1476,6 +1476,69 @@ func (x *Webhook) GetMethod() MethodType {
 	return MethodType_ALL_UNSPECIFIED
 }
 
+type SurveyPageRedirect struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id           int32  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	SurveyPageId int32  `protobuf:"varint,2,opt,name=survey_page_id,json=surveyPageId,proto3" json:"survey_page_id,omitempty"`
+	Link         string `protobuf:"bytes,3,opt,name=link,proto3" json:"link,omitempty"`
+}
+
+func (x *SurveyPageRedirect) Reset() {
+	*x = SurveyPageRedirect{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_web_survey_v1_types_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SurveyPageRedirect) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SurveyPageRedirect) ProtoMessage() {}
+
+func (x *SurveyPageRedirect) ProtoReflect() protoreflect.Message {
+	mi := &file_web_survey_v1_types_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SurveyPageRedirect.ProtoReflect.Descriptor instead.
+func (*SurveyPageRedirect) Descriptor() ([]byte, []int) {
+	return file_web_survey_v1_types_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *SurveyPageRedirect) GetId() int32 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *SurveyPageRedirect) GetSurveyPageId() int32 {
+	if x != nil {
+		return x.SurveyPageId
+	}
+	return 0
+}
+
+func (x *SurveyPageRedirect) GetLink() string {
+	if x != nil {
+		return x.Link
+	}
+	return ""
+}
+
 var File_web_survey_v1_types_proto protoreflect.FileDescriptor
 
 var file_web_survey_v1_types_proto_rawDesc = []byte{
@@ -1691,7 +1754,13 @@ var file_web_survey_v1_types_proto_rawDesc = []byte{
 	0x12, 0x31, 0x0a, 0x06, 0x6d, 0x65, 0x74, 0x68, 0x6f, 0x64, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0e,
 	0x32, 0x19, 0x2e, 0x77, 0x65, 0x62, 0x2e, 0x73, 0x75, 0x72, 0x76, 0x65, 0x79, 0x2e, 0x76, 0x31,
 	0x2e, 0x4d, 0x65, 0x74, 0x68, 0x6f, 0x64, 0x54, 0x79, 0x70, 0x65, 0x52, 0x06, 0x6d, 0x65, 0x74,
-	0x68, 0x6f, 0x64, 0x2a, 0x59, 0x0a, 0x0a, 0x53, 0x75, 0x72, 0x76, 0x65, 0x79, 0x54, 0x79, 0x70,
+	0x68, 0x6f, 0x64, 0x22, 0x5e, 0x0a, 0x12, 0x53, 0x75, 0x72, 0x76, 0x65, 0x79, 0x50, 0x61, 0x67,
+	0x65, 0x52, 0x65, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x02, 0x69, 0x64, 0x12, 0x24, 0x0a, 0x0e, 0x73, 0x75, 0x72,
+	0x76, 0x65, 0x79, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x05, 0x52, 0x0c, 0x73, 0x75, 0x72, 0x76, 0x65, 0x79, 0x50, 0x61, 0x67, 0x65, 0x49, 0x64, 0x12,
+	0x12, 0x0a, 0x04, 0x6c, 0x69, 0x6e, 0x6b, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6c,
+	0x69, 0x6e, 0x6b, 0x2a, 0x59, 0x0a, 0x0a, 0x53, 0x75, 0x72, 0x76, 0x65, 0x79, 0x54, 0x79, 0x70,
 	0x65, 0x12, 0x1f, 0x0a, 0x1b, 0x53, 0x55, 0x52, 0x56, 0x45, 0x59, 0x5f, 0x54, 0x59, 0x50, 0x45,
 	0x5f, 0x41, 0x4c, 0x4c, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44,
 	0x10, 0x00, 0x12, 0x14, 0x0a, 0x10, 0x53, 0x55, 0x52, 0x56, 0x45, 0x59, 0x5f, 0x54, 0x59, 0x50,
@@ -1801,7 +1870,7 @@ func file_web_survey_v1_types_proto_rawDescGZIP() []byte {
 }
 
 var file_web_survey_v1_types_proto_enumTypes = make([]protoimpl.EnumInfo, 8)
-var file_web_survey_v1_types_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_web_survey_v1_types_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_web_survey_v1_types_proto_goTypes = []interface{}{
 	(SurveyType)(0),                          // 0: web.survey.v1.SurveyType
 	(SurveyQuestionType)(0),                  // 1: web.survey.v1.SurveyQuestionType
@@ -1822,27 +1891,28 @@ var file_web_survey_v1_types_proto_goTypes = []interface{}{
 	(*SurveyLogicPageGate)(nil),              // 16: web.survey.v1.SurveyLogicPageGate
 	(*SurveyLogicPageAction)(nil),            // 17: web.survey.v1.SurveyLogicPageAction
 	(*Webhook)(nil),                          // 18: web.survey.v1.Webhook
-	(*timestamppb.Timestamp)(nil),            // 19: google.protobuf.Timestamp
+	(*SurveyPageRedirect)(nil),               // 19: web.survey.v1.SurveyPageRedirect
+	(*timestamppb.Timestamp)(nil),            // 20: google.protobuf.Timestamp
 }
 var file_web_survey_v1_types_proto_depIdxs = []int32{
-	19, // 0: web.survey.v1.Survey.datetime_created:type_name -> google.protobuf.Timestamp
-	19, // 1: web.survey.v1.Survey.datetime_updated:type_name -> google.protobuf.Timestamp
+	20, // 0: web.survey.v1.Survey.datetime_created:type_name -> google.protobuf.Timestamp
+	20, // 1: web.survey.v1.Survey.datetime_updated:type_name -> google.protobuf.Timestamp
 	0,  // 2: web.survey.v1.Survey.type:type_name -> web.survey.v1.SurveyType
 	10, // 3: web.survey.v1.SurveyPage.questions:type_name -> web.survey.v1.SurveyQuestion
 	1,  // 4: web.survey.v1.SurveyQuestion.type:type_name -> web.survey.v1.SurveyQuestionType
 	11, // 5: web.survey.v1.SurveyQuestion.option:type_name -> web.survey.v1.SurveyQuestionOption
 	12, // 6: web.survey.v1.SurveyQuestion.choices:type_name -> web.survey.v1.SurveyChoice
-	19, // 7: web.survey.v1.SurveyResponse.datetime_start:type_name -> google.protobuf.Timestamp
-	19, // 8: web.survey.v1.SurveyResponse.datetime_end:type_name -> google.protobuf.Timestamp
-	19, // 9: web.survey.v1.SurveyResponseAnswer.datetime_created:type_name -> google.protobuf.Timestamp
+	20, // 7: web.survey.v1.SurveyResponse.datetime_start:type_name -> google.protobuf.Timestamp
+	20, // 8: web.survey.v1.SurveyResponse.datetime_end:type_name -> google.protobuf.Timestamp
+	20, // 9: web.survey.v1.SurveyResponseAnswer.datetime_created:type_name -> google.protobuf.Timestamp
 	2,  // 10: web.survey.v1.SurveyLogicPageSource.comparison:type_name -> web.survey.v1.SurveyLogicPageSourceComparisonType
 	3,  // 11: web.survey.v1.SurveyLogicPageGate.comparison:type_name -> web.survey.v1.SurveyLogicPageGateComparisonType
 	4,  // 12: web.survey.v1.SurveyLogicPageGate.from_1_selector:type_name -> web.survey.v1.SurveyLogicPageGateFromType
 	4,  // 13: web.survey.v1.SurveyLogicPageGate.from_2_selector:type_name -> web.survey.v1.SurveyLogicPageGateFromType
 	5,  // 14: web.survey.v1.SurveyLogicPageAction.from_selector:type_name -> web.survey.v1.SurveyLogicPageActionFromType
 	6,  // 15: web.survey.v1.SurveyLogicPageAction.to_selector:type_name -> web.survey.v1.SurveyLogicPageActionToType
-	19, // 16: web.survey.v1.Webhook.datetime_created:type_name -> google.protobuf.Timestamp
-	19, // 17: web.survey.v1.Webhook.datetime_updated:type_name -> google.protobuf.Timestamp
+	20, // 16: web.survey.v1.Webhook.datetime_created:type_name -> google.protobuf.Timestamp
+	20, // 17: web.survey.v1.Webhook.datetime_updated:type_name -> google.protobuf.Timestamp
 	7,  // 18: web.survey.v1.Webhook.method:type_name -> web.survey.v1.MethodType
 	19, // [19:19] is the sub-list for method output_type
 	19, // [19:19] is the sub-list for method input_type
@@ -1989,6 +2059,18 @@ func file_web_survey_v1_types_proto_init() {
 				return nil
 			}
 		}
+		file_web_survey_v1_types_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SurveyPageRedirect); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -1996,7 +2078,7 @@ func file_web_survey_v1_types_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_web_survey_v1_types_proto_rawDesc,
 			NumEnums:      8,
-			NumMessages:   11,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
